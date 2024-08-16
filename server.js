@@ -3,15 +3,16 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const { createClient } = require("@supabase/supabase-js");
 
+require("dotenv").config();
+
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
 const PORT = process.env.PORT || 3000;
 
-const supabaseUrl = "https://zuchcsbxupoqpbphwrlo.supabase.co";
-const supabaseKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp1Y2hjc2J4dXBvcXBicGh3cmxvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjM4MDA0MjMsImV4cCI6MjAzOTM3NjQyM30._1OYZxxhkSnqYkq3T74GbXBqXl3NtRup6d6bZeZGVX0";
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 const readProducts = () => {
